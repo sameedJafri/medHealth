@@ -1,6 +1,7 @@
 //import React, { useState } from "react";
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import NavBar from './Components/NavBar';
 import './LoginPage.css';
 
 
@@ -15,7 +16,9 @@ function LoginPage() {
     };
 
         return (
+            
             <div>
+                <NavBar/>
                 <h1><span style={{ color: "green" }}>Med</span><span style={{ color: "#dddaa4" }}>Health</span></h1>
                 <div className="login-wrap">
                     <div className="card">

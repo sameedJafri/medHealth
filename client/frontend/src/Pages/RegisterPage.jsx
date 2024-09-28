@@ -1,9 +1,12 @@
 import './RegisterPage.css';
+import NavBar from './Components/NavBar';
 
 
 function RegisterPage(){
 
     return (
+        <div>
+            <NavBar/>
         <div className="registration-form">
           <form className="form">
             <p className="title">Create an Account </p>
@@ -17,6 +20,7 @@ function RegisterPage(){
             <button className="submit" type='submit'>Sign Up</button>
             <p className="signin">Already have an account ? <a href="/">Sign in</a> </p>
           </form>
+        </div>
         </div>
       );
 }
