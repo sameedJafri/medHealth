@@ -25,7 +25,8 @@ function LoginPage() {
                         <form className="login-form" >
                             <p className="title">Login</p>
                             <div className="userinfo">
-                                <input placeholder="Email" type="email" />
+                                <input placeholder="Email" type="email"
+                                 />
                             </div>
                             <div className="userinfo">
                                 <input placeholder="Password" type="password" />

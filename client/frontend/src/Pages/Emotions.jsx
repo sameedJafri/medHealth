@@ -8,7 +8,9 @@ function Emotions(){
     return (
         <div className = "content-wrap">
             <NavBar/>
-            <p>Hello this will be for emotions</p>
+            
+
+            
         </div>
       );
 }

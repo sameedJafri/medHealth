@@ -1,0 +1,43 @@
+/* Style for the input field */
+input {
+    width: 50%;
+    padding: 10px;
+    font-size: 1em;
+    border: 2px solid #dddaa4;
+    border-radius: 8px;
+    box-sizing: border-box;
+ 
+}
+.input_container{
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.input{
+    width: 400px;
+}
+button{
+    text-align: center;
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+    margin: 20px;
+    
+}
+.adding{
+    border: 2px solid #dddaa4;
+    background-color: white;
+    color:#dddaa4;
+    font-size:xx-large;
+     justify-content: center;
+     line-height: 6px;
+}
+
+
+.deleting{
+    border: 2px solid rgb(211, 90, 90);
+    background-color: white;
+    color:rgb(211, 90, 90);
+    font-size:xx-large;
+    line-height: 3px;
+}
