@@ -1,26 +1,22 @@
-import React, { useState } from "react";
-import FormInput from './Components/Forms/FormInput';
+//import React, { useState } from "react";
 import './LoginPage.css';
+import './RegisterPage'
 
 function LoginPage() {
 
     return (
         <div className="login-wrap">
             <div className="card">
-                <form className="login-form" onSubmit={(e) =>Login(e)}>
-                    <p className="title">Login </p>
+                <form className="login-form" >
+                    <p className="title">Login</p>
                     <div className="userinfo">
-                        <FormInput fieldName={"Email"} fieldType={"email"} setField={setEmail} />
+                        <input type="email" />
                     </div>
                     <div className="userinfo">
-                        <FormInput fieldName={"Password"} fieldType={"password"} setField={setPassword} />
-                    </div>
-                    <div className = "error-message">
-                    {message && <p>{message}</p>}
+                        <input type= "password" />
                     </div>
                     <input type="submit" value="Login" className="btn" />
-                    <p className="forgotPassword"> <a href="/home">Forgot password</a> </p>
-                    <p className="login">Don't have an account? <a href="/registerAccount">Create Account</a> </p>
+                    <p className="login"><a href="/RegisterPage">Create Account</a></p>
                 </form>
             </div>
             
