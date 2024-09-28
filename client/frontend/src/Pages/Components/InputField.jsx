@@ -26,20 +26,21 @@ export default function AddDynamicInputFields() {
     <div className="container">
       {inputs.map((item, index) => (
         <div className="input_container" key={index}>
-          <input
+         
+         {inputs.length > 1 && (
+            <button className = "deleting" onClick={() => handleDeleteInput(index)}>-</button>
+          )}
+          <input className="input"
             name="restriction"
             type="text"
             value={item.restriction}
             onChange={(event) => handleChange(event, index)}
           />
-
-          {inputs.length > 1 && (
-            <button onClick={() => handleDeleteInput(index)}>Delete</button>
-          )}
           {index === inputs.length - 1 && (
-            <button onClick={() => handleAddInput()}>Add</button>
-          )}
+              <button className="adding" onClick={() => handleAddInput()}><span className="butt">+</span></button>
+            )}
         </div>
+        
       ))}
     </div>
   );
