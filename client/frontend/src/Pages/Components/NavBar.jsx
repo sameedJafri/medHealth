@@ -6,7 +6,7 @@ function NavBar() {
         <div id="navbar">
             <div className="nav-sub">
                 <li>
-                    <a href="/Home"> Welcome </a>
+                    <a href="/Home"> Profile </a>
                 </li>
                 <li>
                     <a href="/Medicine"> Medicine List</a>
