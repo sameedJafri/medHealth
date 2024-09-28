@@ -22,7 +22,7 @@ function NavBar() {
                 </li>
             
                 <li>
-                    <a href="/"> Login </a>
+                    <a href="/LoginPage"> Login </a>
                 </li>
                 <li>
                     <a href="/RegisterPage"> Sign Up </a>

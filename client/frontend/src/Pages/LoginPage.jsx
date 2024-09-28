@@ -25,13 +25,13 @@ function LoginPage() {
                         <form className="login-form" >
                             <p className="title">Login</p>
                             <div className="userinfo">
-                                <input placeholder="Email" type="email" />
+                                <input className = "input_" placeholder="Email" type="email" />
                             </div>
                             <div className="userinfo">
-                                <input placeholder="Password" type="password" />
+                                <input placeholder="Password" type="password" className = "input_"/>
                             </div>
-                            <input type="submit" value="LogIn" className="btn" /><br />
-                            <input type="submit" value="SignUp" className="btn" onClick={handleRegisterClick} />
+                            <input type="submit" value="LogIn" className="btn_" /><br />
+                            <input type="submit" value="SignUp" className="btn_" onClick={handleRegisterClick} />
                             <p className="login">Forgot Your Password? <a href="/RegisterPage">Retrive Password</a></p>
                         </form>
                     </div>
