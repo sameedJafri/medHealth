@@ -18,7 +18,7 @@
 
 .title {
     font-size: 28px;
-    color: #873957;
+    color: green;
     font-weight: 600;
     letter-spacing: -1px;
     position: relative;
@@ -27,28 +27,6 @@
     padding-left: 30px;
 }
 
-.title::before,
-.title::after {
-    position: absolute;
-    content: "";
-    height: 16px;
-    width: 16px;
-    border-radius: 50%;
-    left: 0px;
-    background-color: #873957;
-}
-
-.title::before {
-    width: 18px;
-    height: 18px;
-    background-color: #873957;
-}
-
-.title::after {
-    width: 18px;
-    height: 18px;
-    animation: pulse 1s linear infinite;
-}
 
 .message,
 .signin {
