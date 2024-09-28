@@ -1,6 +1,5 @@
 //import React, { useState } from "react";
 import './LoginPage.css';
-import './RegisterPage'
 
 function LoginPage() {
 
