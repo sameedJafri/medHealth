@@ -1,5 +1,5 @@
 const {
-    getAuth,
+    clientAuth,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     signOut,
@@ -7,7 +7,7 @@ const {
     sendPasswordResetEmail
 } = require('../firebase/firebaseConfig');
 
-const auth = getAuth();
+const auth = clientAuth;
 
 class FirebaseAuthController {
     registerUser(req, res) {

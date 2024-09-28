@@ -29,9 +29,12 @@ const admin = require("firebase-admin");
 require('dotenv').config();
 
 // path to service account key
-const serviceAccountPath = process.env.GOOGLE_APPLICATION_CREDENTIALS || './firebase/medhealth-32c58-firebase-adminsdk-cvxqh-18f51f07e8.json';
-;
+const path = require('path')
+const serviceAccountPath = path.resolve(__dirname, 'medhealth-32c58-firebase-adminsdk-cvxqh-18f51f07e8.json');
+//const serviceAccountPath = process.env.GOOGLE_APPLICATION_CREDENTIALS || './medhealth-32c58-firebase-adminsdk-cvxqh-18f51f07e8.json';
 const serviceAccount = require(serviceAccountPath);
+
+console.log('service account path: ', serviceAccountPath);
 
 // init firebase admin 
 admin.initializeApp({
@@ -41,6 +44,7 @@ admin.initializeApp({
 // export app and admin 
 module.exports = {
     clientAuth,
+    getAuth,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     signOut,

@@ -1,4 +1,4 @@
-const { admin } = require("./firebase/firebaseConfig");
+const { admin } = require("../firebase/firebaseConfig");
 const verifyToken = async (req, res, next) => {
     const idToken = req.cookies.access_token;
     if (!idToken) {
