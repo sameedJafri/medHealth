@@ -11,7 +11,7 @@ function NavBar() {
                     <a href="/Home"> Welcome </a>
                 </li>
                 <li>
-                    <a href="/MedicineList"> Medicine List</a>
+                    <a href="/Medicine"> Medicine List</a>
                 </li>
                 <li>
                     <a href="/Emotions"> Track Emotions</a>
@@ -19,8 +19,10 @@ function NavBar() {
                 <li>
                     <a href="/Restrictions"> Allergies restrictions</a>
                 </li>
-            </div>
-            <div className="nav-sub">
+                <li>
+                    <a href="/Exercise"> Exercises</a>
+                </li>
+            
                 <li>
                     <a href="/"> Login </a>
                 </li>
