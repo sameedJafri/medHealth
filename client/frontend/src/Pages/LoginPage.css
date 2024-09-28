@@ -1,7 +1,7 @@
 .login-wrap{
     display:flex;
     justify-content: center;
-    margin-top: 5rem;
+    margin-top: 3rem;
     margin-bottom: 5rem;
 }
 .card {
@@ -31,7 +31,7 @@
     position: relative;
     display: flex;
     padding-left: 0px;
-    padding-bottom: 50px;
+    margin-bottom: -10px;
 }
 input {
     padding: 10px;
@@ -54,9 +54,13 @@ input {
     background-color: #b5af3c; /*Darker on hover */
 }
 .login a:hover {
-    text-decoration: underline #873957;
+    text-decoration: underline #b5af3c;
 }
 
 .forgotPassword a:hover {
-    text-decoration: underline #873957;
+    text-decoration: underline #b5af3c;
+}
+
+h1{
+    margin-bottom: -30px;
 }
