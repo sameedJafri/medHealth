@@ -16,7 +16,7 @@ function LoginPage() {
                         <input type= "password" />
                     </div>
                     <input type="submit" value="Login" className="btn" />
-                    <p className="login"><a href="/RegisterPage">Create Account</a></p>
+                    <p className="login">Don't have an account? <a href="/RegisterPage">Create Account</a></p>
                 </form>
             </div>
             
