@@ -1,13 +1,16 @@
 import './Restrictions.css';
 import NavBar from './Components/NavBar';
-
+import InputField from './Components/InputField'
 
 function Restrictions(){
 
     return (
         <div className = "content-wrap">
             <NavBar/>
-            <p>Hello this will be the welcome page</p>
+            <h1>Please Add Any Diatery Restrictions and/or Allergies</h1>
+            <div className = "user-intput">
+               <InputField/>
+            </div>
         </div>
       );
 }

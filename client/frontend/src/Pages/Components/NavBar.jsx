@@ -2,8 +2,6 @@ import './Styles/NavBar.css';
 
 function NavBar() {
 
-    //const [userLoggedIn, setUserLoggerIn] = useState(false);
-
     return (
         <div id="navbar">
             <div className="nav-sub">
