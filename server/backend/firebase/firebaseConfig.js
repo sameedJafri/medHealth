@@ -1,6 +1,8 @@
 
 // firebase client SDK (frontend)
 const { initializeApp } = require("firebase/app");
+const { getStorage } = require('firebase/storage');
+
 const {
     getAuth,
     createUserWithEmailAndPassword,
@@ -34,12 +36,14 @@ const serviceAccountPath = path.resolve(__dirname, 'medhealth-32c58-firebase-adm
 //const serviceAccountPath = process.env.GOOGLE_APPLICATION_CREDENTIALS || './medhealth-32c58-firebase-adminsdk-cvxqh-18f51f07e8.json';
 const serviceAccount = require(serviceAccountPath);
 
-console.log('service account path: ', serviceAccountPath);
-
 // init firebase admin 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
+    storageBucket: "gs://medhealth-32c58.appspot.com"
 });
+
+const db = admin.firestore();
+console.log('fire db intialized', db)
 
 // export app and admin 
 module.exports = {
@@ -50,5 +54,6 @@ module.exports = {
     signOut,
     sendEmailVerification,
     sendPasswordResetEmail,
-    admin
+    admin,
+    db
 };
