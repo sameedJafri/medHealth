@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import NavBar from './Components/NavBar'
 
 function Emotions() {
   const [emotion, setEmotion] = useState('');
@@ -22,6 +23,7 @@ function Emotions() {
 
   return (
     <div>
+      <NavBar/>
       <h1>Track Your Emotions</h1>
       <button onClick={toggleInput}>
         {showInput ? 'Hide Input' : 'Log Emotion'}
