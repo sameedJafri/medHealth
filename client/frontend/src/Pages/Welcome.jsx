@@ -13,7 +13,7 @@ function LoginPage() {
     };
 
     return (
-        <div style={{ marginBottom: "50px",marginTop: "50px", marginLeft: "250px", width: "1000px",textAlign: "center"}}>
+        <div style={{ marginBottom: "50px", marginTop: "50px", marginLeft: "250px", width: "1000px", textAlign: "center" }}>
             <h3 style={{ marginBottom: "50px" }}>Welcome to</h3>
             <h1 style={{ marginBottom: "50px" }}>
                 <span style={{ color: "green" }}>Med</span>
@@ -21,17 +21,17 @@ function LoginPage() {
             </h1>
             <div>
 
-            <div style={{ marginBottom: "50px" }}><p >MedHealth's misson is to help indivial to improve themselves by
-                        allowing them to track their health status. This web app is built to
-                        moniter the mental health status of an individual and organise the
-                        intake of their prescription. Singn up to explore the diffrent
-                        feartures offered by MedHealth.{" "}</p></div>
-                        
+                <div style={{ marginBottom: "50px" }}><p >MedHealth's mission is to help individual's to improve themselves by
+                    allowing them to track their health status. This web app is built to
+                    monitor the mental health status of an individual and organize the
+                    intake of their prescription. Singn up to explore the different
+                    features offered by MedHealth.{" "}</p></div>
+
                 <a href="/RegisterPage">
-                    <input style={{ marginRigth: "20px" }} type="submit" value="SignUp" className="btn_"/>
+                    <input style={{ marginRight: "20px" }} type="submit" value="SignUp" className="btn_" />
                 </a>
                 <a href="/LoginPage">
-                    <input style={{ marginLeft: "20px" }} type="submit" value="LogIn" className="btn_"/>
+                    <input style={{ marginLeft: "20px" }} type="submit" value="LogIn" className="btn_" />
                 </a>
             </div>
         </div>
