@@ -6,7 +6,6 @@ import RegisterPage from './Pages/RegisterPage';
 import Medicine from './Pages/Medicine';
 import Emotions from './Pages/Emotions';
 import Restrictions from './Pages/Restrictions';
-import Exercise from './Pages/Exercise';
 import Home from './Pages/Home';
 import Welcome from './Pages/Welcome';
 
@@ -25,7 +24,6 @@ function App() {
         <Route path="/Medicine" element={<Medicine />} />
         <Route path="/Emotions" element={<Emotions />} />
         <Route path="/Restrictions" element={<Restrictions />} />
-        <Route path="/Exercise" element={<Exercise />} />
       </Routes>
     </Router>
     </>
