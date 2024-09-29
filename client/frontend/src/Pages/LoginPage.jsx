@@ -15,6 +15,20 @@ function LoginPage() {
     const handleLogin = async (event) => {
         event.preventDefault(); // Prevent default form submission behavior
         try {
+            const savedData = localStorage.getItem('userData');
+            if (savedData) {
+                const userData = JSON.parse(savedData);
+
+                if (userData.email === email && userData.password === password) {
+                    alert("User logged in successfully");
+                    navigate('/Home');
+                } else {
+                    setError('Invalid email or password. Please try again.');
+                }
+            } else {
+                setError('Invalid email or password. Please try again.');
+            }
+            /*
             // Make an API call to the backend to authenticate the user
             const response = await axios.post('/api/auth/login', {
                 email,
@@ -31,6 +45,8 @@ function LoginPage() {
             } else {
                 setError('Unexpected response from server');
             }
+            */
+
         } catch (err) {
             console.error('Error during login:', err);
             setError('Invalid email or password. Please try again.');
@@ -50,7 +66,7 @@ function LoginPage() {
             <h1><span style={{ color: "green" }}>Med</span><span style={{ color: "#dddaa4" }}>Health</span></h1>
             <div className="login-wrap">
                 <div className="card">
-                    <form className="login-form" >
+                    <form className="login-form" onSubmit={handleLogin}>
                         <p className="title">Login</p>
                         <div className="userinfo">
                             <input className="input_" placeholder="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />

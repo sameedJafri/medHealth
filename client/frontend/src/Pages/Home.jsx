@@ -1,15 +1,17 @@
 import "./Home.css";
 import React, { useEffect, useState } from "react";
 import NavBar from "./Components/NavBar";
-import { db, auth } from "../../firebase/firebaseConfig";
-import { getDoc, doc } from "firebase/firestore";
-import { onAuthStateChanged } from "firebase/auth";
+//import { db, auth } from "../../firebase/firebaseConfig";
+//import { getDoc, doc } from "firebase/firestore";
+//import { onAuthStateChanged } from "firebase/auth";
 
 function Home() {
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(null);
 
   useEffect(() => {
+
+    /*
     // Listen for auth state changes to detect if a user is logged in
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
@@ -34,7 +36,15 @@ function Home() {
 
     // Cleanup subscription on component unmount
     return () => unsubscribe();
+    */
+
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUserData(JSON.parse(storedUser));
+    }
+    setLoading(false);
   }, []);
+
 
   if (loading) {
     return <div>Loading...</div>;
@@ -42,13 +52,36 @@ function Home() {
 
   if (!userData) {
     // hard code a layout if possible
-    return <ul>
-      <li> name: bob joe</li>
-      <li> age: 20 </li>
-      <li> weight </li>
-      <li> height </li>
-      <li> gender </li>
-    </ul>
+    return (
+      <div>
+        <NavBar />
+        <h1 id="Tpage">john doe's Profile </h1>
+        <div className="grid-container">
+          <div className="grid-item; item1">
+            <div className="image-container">
+              <img
+                src="https://i.etsystatic.com/13930930/r/il/0639f3/3128602685/il_fullxfull.3128602685_k8oe.jpg"
+                alt="Plante"
+                className="responsive-image"
+              />
+            </div>
+          </div>
+
+          <div className="grid-item">
+            Gender: male
+          </div>
+          <div className="grid-item">
+            Age: 22
+          </div>
+          <div className="grid-item">
+            Height: 175 cm
+          </div>
+          <div className="grid-item">
+            Weight: 75 kg
+          </div>
+        </div>
+      </div>
+    );
 
     //return <div> No user data found </div>
   }

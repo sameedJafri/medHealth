@@ -1,9 +1,10 @@
 import "./RegisterPage.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { db, auth } from "../../firebase/firebaseConfig"
-import { collection, addDoc } from "firebase/firestore";
-import axios from 'axios'
+//import { db, auth } from "../../firebase/firebaseConfig"
+//import { collection, addDoc } from "firebase/firestore";
+//import { getDatabase, ref, set } from "firebase/database";
+//import axios from 'axios'
 
 function RegisterPage() {
   const [formData, setFormData] = useState({
@@ -14,10 +15,18 @@ function RegisterPage() {
     gender: "",
     height: "",
     email: "",
-    password: ""
+    password: "",
   });
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const savedData = localStorage.getItem('userData');
+    if (savedData) {
+      setFormData(JSON.parse(savedData));
+    }
+  }, [])
+
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -30,39 +39,24 @@ function RegisterPage() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+
+      localStorage.setItem('userData', JSON.stringify(formData));
+      alert("user created succesfully");
+      navigate('/LoginPage');
+      /*
       // Step 1: Register user with Firebase Authentication
 
-      const response = await axios.post('http://localhost:8080/api/auth/register', {
-        ...formData
+      const response = await axios.post('http://localhost/api/auth/register', formData, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
       });
 
-      console.log('res', response.data)
-
-
-      /*createUserWithEmailAndPassword(
-        clientAuth,
-        formData.email,
-        formData.password
-      );*/
-
-      // Step 2: Get the registered user's unique ID
-      const userId = response.data.userCredential.user.uid;
-
-      // Step 3: Save user data to Firestore, excluding the password for security reasons
-      const usersCollectionRef = collection(db, "users");
-      await addDoc(usersCollectionRef, {
-        uid: userId,
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        age: formData.age,
-        weight: formData.weight,
-        gender: formData.gender,
-        height: formData.height,
-        email: formData.email,
-      });
-
-      alert("User created successfully");
-      navigate("/LoginPage");
+      if (response.status === 201) {
+        alert(response.data.message);
+        navigate('/LoginPage');
+      }
+      */
 
     } catch (error) {
       console.error("Error adding user", error);
