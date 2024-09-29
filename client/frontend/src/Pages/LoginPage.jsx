@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavBar from './Components/NavBar';
 import './LoginPage.css';
+import axios from 'axios';
 
 
 function LoginPage() {
@@ -15,7 +16,7 @@ function LoginPage() {
         event.preventDefault(); // Prevent default form submission behavior
         try {
             // Make an API call to the backend to authenticate the user
-            const response = await axios.post('http://localhost:8080/api/auth', {
+            const response = await axios.post('/api/auth/login', {
                 email,
                 password,
             });

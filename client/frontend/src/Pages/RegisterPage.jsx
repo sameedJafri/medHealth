@@ -1,7 +1,9 @@
 import "./RegisterPage.css";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { db } from "../../firebase/firebaseConfig"
+import { db, auth } from "../../firebase/firebaseConfig"
+import { collection, addDoc } from "firebase/firestore";
+import axios from 'axios'
 
 function RegisterPage() {
   const [formData, setFormData] = useState({
@@ -28,13 +30,43 @@ function RegisterPage() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      // saving data to firebase
-      const response = await db.collection("users").add(formData);
+      // Step 1: Register user with Firebase Authentication
+
+      const response = await axios.post('http://localhost:8080/api/auth/register', {
+        ...formData
+      });
+
+      console.log('res', response.data)
+
+
+      /*createUserWithEmailAndPassword(
+        clientAuth,
+        formData.email,
+        formData.password
+      );*/
+
+      // Step 2: Get the registered user's unique ID
+      const userId = response.data.userCredential.user.uid;
+
+      // Step 3: Save user data to Firestore, excluding the password for security reasons
+      const usersCollectionRef = collection(db, "users");
+      await addDoc(usersCollectionRef, {
+        uid: userId,
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        age: formData.age,
+        weight: formData.weight,
+        gender: formData.gender,
+        height: formData.height,
+        email: formData.email,
+      });
+
       alert("User created successfully");
       navigate("/LoginPage");
-      console.log("User added successfully", response);
+
     } catch (error) {
-      console.error("Error adding user", error)
+      console.error("Error adding user", error);
+      alert(error.message);
     }
   };
 
@@ -47,7 +79,7 @@ function RegisterPage() {
 
       <div className="login-wrap">
         <div className="card">
-          <form className="login-form">
+          <form className="login-form" onSubmit={handleSubmit}>
             <p className="title">Create an Account</p>
             <div className="flex">
               <input className="help" placeholder="First Name" type="text" name="firstName" value={formData.firstName} onChange={handleChange} />

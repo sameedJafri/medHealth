@@ -41,7 +41,16 @@ function Home() {
   }
 
   if (!userData) {
-    return <div> No user data found </div>
+    // hard code a layout if possible
+    return <ul>
+      <li> name: bob joe</li>
+      <li> age: 20 </li>
+      <li> weight </li>
+      <li> height </li>
+      <li> gender </li>
+    </ul>
+
+    //return <div> No user data found </div>
   }
 
   return (
