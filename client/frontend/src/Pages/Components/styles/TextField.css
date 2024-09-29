@@ -1,0 +1,20 @@
+.date{
+    margin-bottom: 20px;
+    border: 2px solid green;
+    border-radius: 10px;
+}
+
+.diary{
+    
+    border: 2px solid green;
+    border-radius: 10px;
+}
+
+.remove{
+    width: fit-content;
+    height: 30px;
+    border-radius: 5px;
+    border: 2px solid green;
+    background-color:#dddaa4;
+    border: 2px solid green;
+}
