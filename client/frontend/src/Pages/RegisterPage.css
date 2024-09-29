@@ -57,16 +57,6 @@
     width: 97%;
 }
 
-.submit {
-    border: none;
-    outline: none;
-    background-color: #b5af3c;
-    padding: 10px;
-    border-radius: 10px;
-    color: black;
-    font-size: 16px;
-    transform: .3s ease;
-}
 
 .submit:disabled,
 button[disabled]{
@@ -82,6 +72,12 @@ button[disabled]{
 
 .size{
     width:710px;
+    padding: 10px;
+    font-size: 1em;
+    border: 2px solid green;
+    border-radius: 8px;
+    box-sizing: border-box;
+    
 }
 
 .login-wrap{
@@ -132,4 +128,13 @@ button[disabled]{
 
 h1{
     margin-bottom: -30px;
+}
+.help {
+    width: 50%;
+    padding: 10px;
+    font-size: 1em;
+    border: 2px solid green;
+    border-radius: 8px;
+    box-sizing: border-box;
+ 
 }

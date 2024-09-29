@@ -33,24 +33,29 @@
     padding-left: 0px;
     margin-bottom: -10px;
 }
-input {
+.input_ {
     padding: 10px;
     border: 2px solid green;
     border-radius: 4px; /*to make border rounded*/
     width: 350px; /* less than card size */
     box-sizing: border-box;
 }
-.btn{
+.btn_{
 
     border-radius: 10px; /*to make border rounded*/
     background-color: #dddaa4;
-    border: 2px solid #b5af3c;;
+    border: 2px solid #b5af3c;
+    width:350px;
+    padding: 8px;
+    font-size: 1em;
+    border-radius: 8px;
+    box-sizing: border-box;
 
 }
 .userinfo {
     margin-bottom: 15px; /*Space between inputs*/
 }
-.btn:hover {
+.btn_:hover {
     background-color: #b5af3c; /*Darker on hover */
 }
 .login a:hover {

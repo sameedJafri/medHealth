@@ -18,11 +18,7 @@ function NavBar() {
                     <a href="/Restrictions"> Allergies restrictions</a>
                 </li>
                 <li>
-                    <a href="/Exercise"> Exercises</a>
-                </li>
-            
-                <li>
-                    <a href="/"> Login </a>
+                    <a href="/LoginPage"> Login </a>
                 </li>
                 <li>
                     <a href="/RegisterPage"> Sign Up </a>
