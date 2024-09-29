@@ -1,0 +1,27 @@
+.wrap{
+    height: 80vh;
+    display: flex;
+    justify-content: center; /* Horizontally centers the text */
+    align-items: center;
+    flex-direction: column;
+    
+}
+.submit-button{
+    border-radius: 10px; /*to make border rounded*/
+    background-color: #dddaa4;
+    border: 2px solid #b5af3c;
+    width:350px;
+    padding: 8px;
+    font-size: 1em;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+.border-wrap{
+
+    background-color: #dddaa4;
+    height:20%;
+    width: 100%;
+    width: fit-content;
+    justify-content: center; /* Horizontally centers the text */
+    align-items: center;
+}
