@@ -7,11 +7,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-.env
-server/backend/firebase/medhealth-32c58-firebase-adminsdk-cvxqh-18f51f07e8.json
-
-
-node_modules/
+node_modules
 dist
 dist-ssr
 *.local

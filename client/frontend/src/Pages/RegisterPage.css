@@ -1,0 +1,140 @@
+.registration-form {
+  
+    display:flex;
+    justify-content: center;
+    margin-top: 3rem;
+    margin-bottom: 5rem;
+}
+
+.form {
+    border-radius: 15px;
+    border-style: solid;
+    border-color:green;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: white;
+    padding: 20px;
+    width:fit-content;
+    border-radius: 20px;
+    position: relative;
+}
+
+.title {
+    font-size: 28px;
+    color: green;
+    font-weight: 600;
+    letter-spacing: -1px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 265px;
+    margin-bottom: -10px;
+}
+
+
+.message,
+.signin {
+    color: rgba(88, 87, 87, 0.822);
+    font-size: 14px;
+}
+
+.signin {
+    text-align: center;
+}
+
+.signin a {
+    color: green;
+}
+
+.signin a:hover {
+    text-decoration: underline #b5af3c;
+}
+
+.flex {
+    display: flex;
+    gap: 2rem;
+    width: 97%;
+}
+
+
+.submit:disabled,
+button[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+
+.submit:enabled:hover {
+    background-color: #b5af3c;
+    cursor: pointer;
+}
+
+.size{
+    width:710px;
+    padding: 10px;
+    font-size: 1em;
+    border: 2px solid green;
+    border-radius: 8px;
+    box-sizing: border-box;
+    
+}
+
+.login-wrap{
+    display:flex;
+    justify-content: center;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+}
+.card {
+    width: 400px;
+    height: 450px;;
+    padding: 20px; 
+    border-radius: 15px;
+    border-style: solid;
+    border-color:green;
+    box-shadow: 0 30px 40px rgba(0, 0, 0, 0.1); 
+    display: flex;
+    justify-content: center;
+    width:fit-content;
+    height: fit-content;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+
+}
+.title {
+    font-size: 28px;
+    color: green;
+    font-weight: 600;
+    letter-spacing: -1px;
+    position: relative;
+    display: flex;
+    padding-left: 0px;
+    padding-bottom: 50px;
+}
+
+.btn{
+
+    border-radius: 10px; /*to make border rounded*/
+    background-color: #dddaa4;
+    border: 2px solid #b5af3c;;
+
+}
+
+h1{
+    margin-bottom: -30px;
+}
+.help {
+    width: 50%;
+    padding: 10px;
+    font-size: 1em;
+    border: 2px solid green;
+    border-radius: 8px;
+    box-sizing: border-box;
+ 
+}

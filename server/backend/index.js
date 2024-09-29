@@ -3,7 +3,9 @@ require('dotenv').config();
 const express = require("express");
 const cookieParser = require('cookie-parser')
 const cors = require("cors");
+
 const authRoutes = require('./routes/authRoutes')
+const medicationsRoutes = require('./routes/medicationRoutes')
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -16,6 +18,7 @@ app.use(cookieParser());
 
 // routes
 app.use('/api/auth', authRoutes);
+app.use('/api/medications', medicationsRoutes);
 
 app.get('/', (req, res) => {
     res.send('Hello World!')

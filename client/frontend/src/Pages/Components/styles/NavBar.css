@@ -1,0 +1,28 @@
+#navbar {
+  display: flex;
+  justify-content: center; /* Center the nav bar */
+  padding: 20px 30px;
+  background-color: #dddaa4;
+}
+
+#navbar .nav-sub {
+  display: flex;
+  justify-content: space-evenly; /* Ensure even spacing between items */
+  width: 100%; /*Use full width of the container */
+}
+
+#navbar li {
+  list-style-type: none;
+  cursor: pointer;
+  font-size: 1.5em;
+  margin: 0 10px; /*Optional: Adds some space between items */
+}
+
+#navbar li:hover, #navbar a:hover {
+  color: rgb(240, 205, 205);
+}
+
+a:link, a:visited {
+  text-decoration: none;
+  color: inherit; /*Ensure the text color stays the same */
+}

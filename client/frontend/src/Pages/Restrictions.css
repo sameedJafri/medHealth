@@ -1,0 +1,21 @@
+
+
+/* Style for the heading */
+h1 {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 20px; /* Add margin below the h1 to separate it from the input fields */
+    text-align: center; /* Optional: Center align the heading */
+}
+
+/* Wrapper for user input fields */
+.user-input {
+    margin-top: 20px; /* Add space between the heading and input fields */
+    display: flex;
+    flex-direction: column; /* Stack input fields vertically */
+    justify-content: space-between;
+}
+
+
+
+
