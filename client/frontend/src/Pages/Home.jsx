@@ -1,12 +1,45 @@
 import "./Home.css";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from "./Components/NavBar";
+import { db, clientAuth } from "../firebase/firebaseConfig";
+import { getDocs, doc } from "firebase/firestore";
 
 function Home() {
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const user = clientAuth.currentUser;
+        if (user) {
+          const userId = userId;
+          const userDocRef = doc(db, "users", userId);
+          const userDoc = await getDocs(userDocRef);
+
+          if (userDoc.exists()) {
+            setUserData(userDoc.data());
+          } else {
+            console.log("No such document!");
+          }
+        } else {
+          console.log("No user found");
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
+
+  if (!userData) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div>
       <NavBar />
-      <h1 id="Tpage">(FIRST LAST name)'s Profile</h1>
+      <h1 id="Tpage">{`${userData.firstName} ${userData.lastName}`}'s Profile </h1>
       <div className="grid-container">
         <div className="grid-item; item1">
           <div className="image-container">
@@ -19,17 +52,16 @@ function Home() {
         </div>
 
         <div className="grid-item">
-          {" "}
-          Gender:
+          Gender: {userData.gender}
         </div>
         <div className="grid-item">
-          Age:
+          Age: {userData.age}
         </div>
         <div className="grid-item">
-          Height:
+          Height: {userData.height} cm
         </div>
         <div className="grid-item">
-          Weight:
+          Weight: {userData.weight} kg
         </div>
       </div>
     </div>
