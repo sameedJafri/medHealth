@@ -1,0 +1,7 @@
+.wrap{
+    height: 80vh;
+    display: flex;
+    justify-content: center; /* Horizontally centers the text */
+    align-items: center;
+    flex-direction: column;
+}
