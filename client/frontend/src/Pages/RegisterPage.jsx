@@ -1,8 +1,7 @@
 import "./RegisterPage.css";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { db } from "../firebase /firebaseConfig"
-import { useNavigation } from "react-router-dom";
+import { db } from "../../firebase/firebaseConfig"
 
 function RegisterPage() {
   const [formData, setFormData] = useState({
@@ -33,8 +32,7 @@ function RegisterPage() {
       const response = await db.collection("users").add(formData);
       alert("User created successfully");
       navigate("/LoginPage");
-      //console.log("User added successfully", response);
-      navigate("/LoginPage");
+      console.log("User added successfully", response);
     } catch (error) {
       console.error("Error adding user", error)
     }
@@ -52,23 +50,23 @@ function RegisterPage() {
           <form className="login-form">
             <p className="title">Create an Account</p>
             <div className="flex">
-              <input className="help" placeholder="First Name" type="text" />
-              <input className="help" placeholder="Last Name" type="text" />
+              <input className="help" placeholder="First Name" type="text" name="firstName" value={formData.firstName} onChange={handleChange} />
+              <input className="help" placeholder="Last Name" type="text" name="lastName" value={formData.lastName} onChange={handleChange} />
             </div> <br />
 
             <div className="flex">
-              <input className="help" placeholder="Age" type="number" />
+              <input className="help" placeholder="Age" type="number" name="age" value={formData.age} onChange={handleChange} />
               <input className="help" placeholder="Weight (kg)" type="number" />
             </div><br />
 
             <div className="flex">
-              <input className="help" placeholder="Gender" type="text" />
-              <input className="help" placeholder="height (cm)" type="number" />
+              <input className="help" placeholder="Gender" type="text" name="gender" value={formData.gender} onChange={handleChange} />
+              <input className="help" placeholder="height (cm)" type="number" name="height" value={formData.height} onChange={handleChange} />
             </div><br />
 
-            <input className="size" placeholder="Email" type="email" /><br />
+            <input className="size" placeholder="Email" type="email" name="email" value={formData.email} onChange={handleChange} /><br />
 
-            <input className="size" placeholder="Password" type="password" /><br />
+            <input className="size" placeholder="Password" type="password" name="password" value={formData.password} onChange={handleChange} /><br />
 
             <div>
               <button className="size btn" type="submit"> Sign Up </button>

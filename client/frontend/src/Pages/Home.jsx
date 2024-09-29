@@ -1,39 +1,47 @@
 import "./Home.css";
 import React, { useEffect, useState } from "react";
 import NavBar from "./Components/NavBar";
-import { db, clientAuth } from "../firebase/firebaseConfig";
-import { getDocs, doc } from "firebase/firestore";
+import { db, auth } from "../../firebase/firebaseConfig";
+import { getDoc, doc } from "firebase/firestore";
+import { onAuthStateChanged } from "firebase/auth";
 
 function Home() {
   const [userData, setUserData] = useState(null);
+  const [loading, setLoading] = useState(null);
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const user = clientAuth.currentUser;
-        if (user) {
-          const userId = userId;
+    // Listen for auth state changes to detect if a user is logged in
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        try {
+          const userId = user.uid;
           const userDocRef = doc(db, "users", userId);
-          const userDoc = await getDocs(userDocRef);
+          const userDoc = await getDoc(userDocRef);
 
           if (userDoc.exists()) {
             setUserData(userDoc.data());
           } else {
             console.log("No such document!");
           }
-        } else {
-          console.log("No user found");
+        } catch (error) {
+          console.error("Error fetching user data:", error);
         }
-      } catch (error) {
-        console.error("Error fetching user data:", error);
+      } else {
+        console.log("No user found. Please log in.");
       }
-    };
+      setLoading(false);
+    });
 
-    fetchUserData();
+    // Cleanup subscription on component unmount
+    return () => unsubscribe();
   }, []);
 
-  if (!userData) {
+  if (loading) {
     return <div>Loading...</div>;
+  }
+
+  if (!userData) {
+    return <div> No user data found </div>
   }
 
   return (

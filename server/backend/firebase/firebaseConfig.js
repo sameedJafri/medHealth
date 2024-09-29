@@ -2,6 +2,7 @@
 // firebase client SDK (frontend)
 const { initializeApp } = require("firebase/app");
 const { getStorage } = require('firebase/storage');
+const { getFirestore } = require('firebase/firestore');
 
 const {
     getAuth,

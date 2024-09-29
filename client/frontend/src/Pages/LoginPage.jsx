@@ -15,7 +15,7 @@ function LoginPage() {
         event.preventDefault(); // Prevent default form submission behavior
         try {
             // Make an API call to the backend to authenticate the user
-            const response = await axios.post('http://localhost:8080/api/login', {
+            const response = await axios.post('http://localhost:8080/api/auth', {
                 email,
                 password,
             });
