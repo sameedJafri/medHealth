@@ -2,11 +2,12 @@ import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginPage from './Pages/LoginPage';
 import RegisterPage from './Pages/RegisterPage';
-import Medicine from './Pages/MedicineList';
+import Medicine from './Pages/Medicine';
 import Emotions from './Pages/Emotions';
 import Restrictions from './Pages/Restrictions';
 import Exercise from './Pages/Exercise';
 import Home from './Pages/Home';
+
 
 
 function App() {
