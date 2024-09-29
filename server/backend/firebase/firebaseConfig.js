@@ -1,9 +1,7 @@
-
 // firebase client SDK (frontend)
 const { initializeApp } = require("firebase/app");
 const { getStorage } = require('firebase/storage');
-const { getFirestore } = require('firebase/firestore');
-
+const { getDatabase } = require('firebase/database'); // Import getDatabase
 const {
     getAuth,
     createUserWithEmailAndPassword,
@@ -20,12 +18,14 @@ const firebaseConfig = {
     projectId: "medhealth-32c58",
     storageBucket: "medhealth-32c58.appspot.com",
     messagingSenderId: "466681565691",
-    appId: "1:466681565691:web:671c165911d28502927b5e"
+    appId: "1:466681565691:web:671c165911d28502927b5e",
+    databaseURL: "https://medhealth-32c58-default-rtdb.firebaseio.com" // Ensure this is set
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const clientAuth = getAuth(app);
+const database = getDatabase(app); // Initialize Realtime Database
 
 // firebase admin sdk (backend)
 const admin = require("firebase-admin");
@@ -34,17 +34,16 @@ require('dotenv').config();
 // path to service account key
 const path = require('path')
 const serviceAccountPath = path.resolve(__dirname, 'medhealth-32c58-firebase-adminsdk-cvxqh-18f51f07e8.json');
-//const serviceAccountPath = process.env.GOOGLE_APPLICATION_CREDENTIALS || './medhealth-32c58-firebase-adminsdk-cvxqh-18f51f07e8.json';
 const serviceAccount = require(serviceAccountPath);
 
 // init firebase admin 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    storageBucket: "gs://medhealth-32c58.appspot.com"
+    databaseURL: "https://medhealth-32c58-default-rtdb.firebaseio.com" // Ensure this is set
 });
 
-const db = admin.firestore();
-console.log('fire db intialized', db)
+const db = admin.database(); // Initialize Realtime Database for admin
+console.log('Realtime Database initialized', db)
 
 // export app and admin 
 module.exports = {

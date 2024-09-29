@@ -3,10 +3,9 @@ const express = require('express');
 const multer = require('multer');
 const { db, admin } = require('../firebase/firebaseConfig')
 const verifyToken = require('../middleware/token'); // To verify user authentication
-const setReminder = require('../utils/reminders.js')
+const setReminder = require('../utils/reminder')
 const performOCR = require('../utils/ocr');
 const router = express.Router();
-
 
 const upload = multer({ storage: multer.memoryStorage() }); // To handle file uploads
 
@@ -74,6 +73,7 @@ router.post('/add-with-photo', verifyToken, upload.single('photo'), async (req, 
                     createdAt: admin.firestore.FieldValue.serverTimestamp(),
                 };
                 await db.collection('reminders').add(reminderData);
+                const reminderDoc = await db.collection('reminders').add(reminderData);
                 setReminder(reminderData);
             });
         }

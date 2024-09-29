@@ -10,29 +10,46 @@ const {
 const auth = clientAuth;
 
 class FirebaseAuthController {
-    registerUser(req, res) {
-        const { email, password } = req.body;
+    async registerUser(req, res) {
+        const { email, password, firstName, lastName, age, weight, gender, height } = req.body;
         if (!email || !password) {
             return res.status(422).json({
                 email: "Email is required",
                 password: "Password is required",
             });
         }
-        createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                sendEmailVerification(auth.currentUser)
-                    .then(() => {
-                        res.status(201).json({ message: "Verification email sent! User created successfully!" });
-                    })
-                    .catch((error) => {
-                        console.error(error);
-                        res.status(500).json({ error: "Error sending email verification" });
-                    });
-            })
-            .catch((error) => {
-                const errorMessage = error.message || "An error occurred while registering user";
-                res.status(500).json({ error: errorMessage });
+        try {
+            // Step 1: Register user with Firebase Authentication
+            const userCredential = await createUserWithEmailAndPassword(getAuth(), email, password);
+
+            // Step 2: Get the registered user's unique ID
+            const userId = userCredential.user.uid;
+
+            // Step 3: Save user's details to Firebase Realtime Database
+            await set(ref(db, 'users/' + userId), {
+                uid: userId,
+                firstName,
+                lastName,
+                age,
+                weight,
+                gender,
+                height,
+                email,
             });
+
+            // Step 4: Send verification email
+            await sendEmailVerification(userCredential.user);
+
+            // Step 5: Respond with success
+            res.status(201).json({
+                message: "Verification email sent! User created successfully!",
+                uid: userId,
+                email: email,
+            });
+        } catch (error) {
+            console.error("Error adding user:", error);
+            res.status(500).json({ error: error.message });
+        }
     }
 
 
