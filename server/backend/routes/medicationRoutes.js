@@ -3,6 +3,8 @@ const express = require('express');
 const multer = require('multer');
 const { db, admin } = require('../firebase/firebaseConfig')
 const verifyToken = require('../middleware/token'); // To verify user authentication
+const setReminder = require('../utils/reminders.js')
+const performOCR = require('../utils/ocr');
 const router = express.Router();
 
 
@@ -10,54 +12,72 @@ const upload = multer({ storage: multer.memoryStorage() }); // To handle file up
 
 // Add a new medication manually
 // Add a new medication (manually or with a photo)
-router.post('/add-photo', verifyToken, upload.single('photo'), async (req, res) => {
+router.post('/add-with-photo', verifyToken, upload.single('photo'), async (req, res) => {
     const { drugName, dosage, frequency, reminders } = req.body;
     const userId = req.user.uid;
     const photo = req.file;
 
+    if (!photo) {
+        return res.status(400).json({ error: "Photo is required" });
+    }
+
     try {
         let photoUrl = null;
-
         // Step 1: If a photo is provided, upload it to Firebase Storage
-        if (photo) {
-            const bucket = admin.storage().bucket();
-            const fileName = `medications/${userId}/${Date.now()}_${photo.originalname}`;
-            const file = bucket.file(fileName);
-            const stream = file.createWriteStream({
-                metadata: {
-                    contentType: photo.mimetype,
-                },
+        const bucket = admin.storage().bucket();
+        const fileName = `medications/${userId}/${Date.now()}_${photo.originalname}`;
+        const file = bucket.file(fileName);
+        const stream = file.createWriteStream({
+            metadata: {
+                contentType: photo.mimetype,
+            },
+        });
+
+        // Handle the stream events to upload the photo
+        await new Promise((resolve, reject) => {
+            stream.on('error', (error) => {
+                console.error('Error uploading photo:', error);
+                reject('Error uploading photo');
             });
 
-            // Handle the stream events to upload the photo
-            await new Promise((resolve, reject) => {
-                stream.on('error', (error) => {
-                    console.error('Error uploading photo:', error);
-                    reject('Error uploading photo');
-                });
+            stream.on('finish', resolve);
+            stream.end(photo.buffer);
+        });
 
-                stream.on('finish', () => {
-                    photoUrl = `https://storage.googleapis.com/${bucket.name}/${file.name}`;
-                    resolve();
-                });
+        photoUrl = `https://storage.googleapis.com/${bucket.name}/${file.name}`;
 
-                stream.end(photo.buffer);
-            });
-        }
+        const ocrText = await performOCR(photo.buffer);
+        console.log('OCR Text:', ocrText);
 
-        // Step 2: Create the new medication object
         const newMedication = {
             userId,
-            drugName,
+            drugName: drugName || ocrText,
             dosage,
             frequency,
             reminders,
             photo: photoUrl, // This will be null if no photo is provided
             createdAt: admin.firestore.FieldValue.serverTimestamp(),
-        };
+        }
 
         // Step 3: Save the new medication to Firestore
         const docRef = await db.collection('medications').add(newMedication);
+
+        // adding reminders
+        if (reminders && Array.isArray(reminders)) {
+            reminders.forEach(async (reminder) => {
+                const { time, days } = reminder;
+                const reminderData = {
+                    userId,
+                    medicationId: docRef.id,
+                    time,
+                    days,
+                    createdAt: admin.firestore.FieldValue.serverTimestamp(),
+                };
+                await db.collection('reminders').add(reminderData);
+                setReminder(reminderData);
+            });
+        }
+
         res.status(201).json({ message: "Medication added successfully", medicationId: docRef.id });
 
     } catch (error) {
