@@ -8,10 +8,12 @@ function Medicine() {
         <div className = "wraper">
             <NavBar/>
             <div className = "wrap">
+                <div class = "border-wrap">
             <label class="form-label" for="customFile">Please upload a photo of your medical prescriptions</label><br/>
             <input type="file" class="form-control" id="customFile" />
             <br/>
-            <input type= "button" className = "submit"value = "Submit"/>
+            </div>
+            <input type= "button" className = "submit-button"value = "Submit"/>
             </div>
         </div>
     )
