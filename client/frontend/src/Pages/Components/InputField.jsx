@@ -30,7 +30,7 @@ export default function AddDynamicInputFields() {
          {inputs.length > 1 && (
             <button className = "deleting" onClick={() => handleDeleteInput(index)}>-</button>
           )}
-          <input className="input"
+          <input placeholder="Allergy/Restrictions" className="input"
             name="restriction"
             type="text"
             value={item.restriction}
